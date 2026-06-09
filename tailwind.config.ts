@@ -11,9 +11,25 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        navy: "var(--color-navy)",
+        "deep-blue": "var(--color-deep-blue)",
+        sky: "var(--color-sky)",
+        gold: "var(--color-gold)",
+        cream: "var(--color-cream)",
+        muted: "var(--color-muted)",
+        glass: "var(--color-glass)",
+      },
+      fontFamily: {
+        display: ["var(--font-playfair)", "serif"],
+        sans: ["var(--font-inter)", "sans-serif"],
+      },
+      boxShadow: {
+        'gold-glow': '0 0 0 3px rgba(201,147,42,0.3)',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/forms"),
+  ],
 };
 export default config;

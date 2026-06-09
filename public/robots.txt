@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /api/
+
+# Host
+Host: https://www.tripstravels.co.uk
+
+# Sitemaps
+Sitemap: https://www.tripstravels.co.uk/sitemap.xml
