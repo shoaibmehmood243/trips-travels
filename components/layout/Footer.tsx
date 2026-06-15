@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
               />
             </Link>
             <p className="text-muted text-sm leading-relaxed">
-              We are many variations of passages available but the majority have suffer alteration in some form by injected.
+              Your trusted partner for seamless travel planning. We specialize in custom flight bookings, tailor-made holiday packages, and reliable support to bring your travel dreams to life.
             </p>
 
             {/* 24/7 Support Block */}
@@ -164,11 +164,11 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  href="/#quote"
+                  href="/flights"
                   className="inline-flex items-center hover:text-gold transition-all hover:translate-x-1 group"
                 >
                   <span className="text-gold mr-2 font-bold transition-transform group-hover:scale-110">&raquo;</span>
-                  Contact Us
+                  Flights
                 </Link>
               </li>
             </ul>
