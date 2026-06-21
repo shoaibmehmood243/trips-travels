@@ -10,7 +10,6 @@ import {
   AlertCircle,
   Plane,
   ArrowLeftRight,
-  Calendar,
   User,
   Mail,
   Phone,
@@ -205,29 +204,27 @@ export const FlightEnquiryForm: React.FC = () => {
         ))}
       </div>
 
-      {/* Row 2: Main Flight Search Fields */}
-      <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 relative ${tripType === "return" ? "lg:grid-cols-5" : "lg:grid-cols-4"
-        }`}>
+      {/* Row 1: From & To fields */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative">
         {/* Departure Box */}
-        <div className={`relative bg-white/5 border ${errors.departureAirport ? "border-rose-500/50" : "border-white/10"} rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all min-h-[84px] col-span-1`}>
+        <div className={`relative bg-white/5 border ${errors.departureAirport ? "border-rose-500/50" : "border-white/10"} rounded-2xl p-3.5 flex flex-col justify-between hover:border-white/20 transition-all min-h-[70px] col-span-1`}>
           <span className="text-xs font-semibold text-muted/80 tracking-wider uppercase mb-1 flex items-center">
             From
           </span>
           <input
             type="text"
-            className="w-full bg-transparent text-white font-bold text-base md:text-lg border-none p-0 focus:ring-0 focus:outline-none placeholder:text-white/20"
+            className="w-full bg-transparent text-white font-bold text-sm md:text-base border-none p-0 focus:ring-0 focus:outline-none placeholder:text-white/20"
             placeholder="London (All)"
             {...register("departureAirport")}
           />
-          <Plane className="w-5 h-5 text-sky absolute top-4 right-4 rotate-45 opacity-70" />
+          <Plane className="w-5 h-5 text-sky absolute top-3.5 right-4 rotate-45 opacity-70" />
           {errors.departureAirport && (
-            <span className="text-rose-500 text-[10px] mt-1 block absolute bottom-1 left-4">{errors.departureAirport.message}</span>
+            <span className="text-rose-500 text-[10px] mt-1 block absolute bottom-0.5 left-4">{errors.departureAirport.message}</span>
           )}
         </div>
 
         {/* Swap Button */}
-        <div className={`absolute right-4 md:right-auto top-[4.25rem] md:top-1/2 -translate-y-1/2 md:-translate-x-1/2 z-20 ${tripType === "return" ? "md:left-[20%]" : "md:left-[25%]"
-          }`}>
+        <div className="absolute right-4 md:right-auto md:left-1/2 top-[52px] md:top-1/2 -translate-y-1/2 md:-translate-x-1/2 z-20">
           <button
             type="button"
             onClick={handleSwap}
@@ -239,69 +236,72 @@ export const FlightEnquiryForm: React.FC = () => {
         </div>
 
         {/* Destination Box */}
-        <div className={`relative bg-white/5 border ${errors.destination ? "border-rose-500/50" : "border-white/10"} rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all min-h-[84px] col-span-1`}>
+        <div className={`relative bg-white/5 border ${errors.destination ? "border-rose-500/50" : "border-white/10"} rounded-2xl p-3.5 flex flex-col justify-between hover:border-white/20 transition-all min-h-[70px] col-span-1`}>
           <span className="text-xs font-semibold text-muted/80 tracking-wider uppercase mb-1">
             To
           </span>
           <input
             type="text"
-            className="w-full bg-transparent text-white font-bold text-base md:text-lg border-none p-0 focus:ring-0 focus:outline-none placeholder:text-white/20"
+            className="w-full bg-transparent text-white font-bold text-sm md:text-base border-none p-0 focus:ring-0 focus:outline-none placeholder:text-white/20"
             placeholder="Destination"
             {...register("destination")}
           />
-          <Plane className="w-5 h-5 text-sky absolute top-4 right-4 rotate-135 opacity-70" />
+          <Plane className="w-5 h-5 text-sky absolute top-3.5 right-4 rotate-135 opacity-70" />
           {errors.destination && (
-            <span className="text-rose-500 text-[10px] mt-1 block absolute bottom-1 left-4">{errors.destination.message}</span>
+            <span className="text-rose-500 text-[10px] mt-1 block absolute bottom-0.5 left-4">{errors.destination.message}</span>
           )}
         </div>
+      </div>
 
+      {/* Row 2: Dates & Passenger Class fields */}
+      <div className={`grid grid-cols-1 gap-4 ${tripType === "return" ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
         {/* Date Box */}
-        <div className={`relative bg-white/5 border ${errors.departureDate ? "border-rose-500/50" : "border-white/10"} rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all min-h-[84px] col-span-1`}>
+        <div className={`relative bg-white/5 border ${errors.departureDate ? "border-rose-500/50" : "border-white/10"} rounded-2xl p-3.5 flex flex-col justify-between hover:border-white/20 transition-all min-h-[70px] col-span-1`}>
           <span className="text-xs font-semibold text-muted/80 tracking-wider uppercase mb-1">
             Journey Date
           </span>
           <input
             type="date"
-            className="w-full bg-transparent text-white font-bold text-base md:text-lg border-none p-0 focus:ring-0 focus:outline-none [color-scheme:dark] cursor-pointer"
+            className="w-full bg-transparent text-white font-bold text-sm md:text-base border-none p-0 focus:ring-0 focus:outline-none [color-scheme:dark] cursor-pointer"
             {...register("departureDate")}
           />
-          <Calendar className="w-5 h-5 text-sky absolute top-4 right-4 opacity-70 pointer-events-none" />
+          {/* <Calendar className="w-5 h-5 text-sky absolute top-3.5 right-4 opacity-70 pointer-events-none" /> */}
           {errors.departureDate && (
-            <span className="text-rose-500 text-[10px] mt-1 block absolute bottom-1 left-4">{errors.departureDate.message}</span>
+            <span className="text-rose-500 text-[10px] mt-1 block absolute bottom-0.5 left-4">{errors.departureDate.message}</span>
           )}
         </div>
 
         {/* Return Date Box */}
         {tripType === "return" && (
-          <div className="relative bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all min-h-[84px] md:col-span-1">
+          <div className="relative bg-white/5 border border-white/10 rounded-2xl p-3.5 flex flex-col justify-between hover:border-white/20 transition-all min-h-[70px] md:col-span-1">
             <span className="text-xs font-semibold text-muted/80 tracking-wider uppercase mb-1">
               Return Date
             </span>
             <input
               type="date"
-              className="w-full bg-transparent text-white font-bold text-base md:text-lg border-none p-0 focus:ring-0 focus:outline-none [color-scheme:dark] cursor-pointer"
+              className="w-full bg-transparent text-white font-bold text-sm md:text-base border-none p-0 focus:ring-0 focus:outline-none [color-scheme:dark] cursor-pointer"
               {...register("returnDate")}
             />
-            <Calendar className="w-5 h-5 text-sky absolute top-4 right-4 opacity-70 pointer-events-none" />
+            {/* <Calendar className="w-5 h-5 text-sky absolute top-3.5 right-4 opacity-70 pointer-events-none" /> */}
           </div>
         )}
 
         {/* Passengers Selection Box */}
         <div
           ref={dropdownRef}
-          className="relative bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all min-h-[84px] md:col-span-1 cursor-pointer select-none"
+          className="relative bg-white/5 border border-white/10 rounded-2xl p-3.5 flex flex-col justify-between hover:border-white/20 transition-all min-h-[70px] md:col-span-1 cursor-pointer select-none"
           onClick={() => setShowPassengerDropdown(!showPassengerDropdown)}
         >
           <span className="text-xs font-semibold text-muted/80 tracking-wider uppercase mb-1">
             Passenger, Class
           </span>
           <div className="flex items-center justify-between">
-            <span className="text-white font-bold text-base md:text-lg leading-tight truncate">
+            <span className="text-white font-bold text-sm md:text-base leading-tight truncate">
               {passengersDisplay()}
             </span>
             <ChevronDown className="w-4 h-4 text-sky ml-2 flex-shrink-0" />
           </div>
-          <Users className="w-5 h-5 text-sky absolute top-4 right-4 opacity-70" />
+          <Users className="w-5 h-5 text-sky absolute top-3.5 right-4 opacity-70" />
 
           {/* Interactive Dropdown Popover */}
           {showPassengerDropdown && (
@@ -433,53 +433,53 @@ export const FlightEnquiryForm: React.FC = () => {
       {/* Row 3: User Details (Name, Email, Contact) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Full Name */}
-        <div className={`relative bg-white/5 border ${errors.name ? "border-rose-500/50" : "border-white/10"} rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all min-h-[84px]`}>
+        <div className={`relative bg-white/5 border ${errors.name ? "border-rose-500/50" : "border-white/10"} rounded-2xl p-3.5 flex flex-col justify-between hover:border-white/20 transition-all min-h-[70px]`}>
           <span className="text-xs font-semibold text-muted/80 tracking-wider uppercase mb-1">
             Name
           </span>
           <input
             type="text"
-            className="w-full bg-transparent text-white font-bold text-base md:text-lg border-none p-0 focus:ring-0 focus:outline-none placeholder:text-white/20"
+            className="w-full bg-transparent text-white font-bold text-sm md:text-base border-none p-0 focus:ring-0 focus:outline-none placeholder:text-white/20"
             placeholder="Enter Your Name"
             {...register("name")}
           />
-          <User className="w-5 h-5 text-sky absolute top-4 right-4 opacity-70 pointer-events-none" />
+          <User className="w-5 h-5 text-sky absolute top-3.5 right-4 opacity-70 pointer-events-none" />
           {errors.name && (
-            <span className="text-rose-500 text-[10px] mt-1 block absolute bottom-1 left-4">{errors.name.message}</span>
+            <span className="text-rose-500 text-[10px] mt-1 block absolute bottom-0.5 left-4">{errors.name.message}</span>
           )}
         </div>
 
         {/* Email Address */}
-        <div className={`relative bg-white/5 border ${errors.email ? "border-rose-500/50" : "border-white/10"} rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all min-h-[84px]`}>
+        <div className={`relative bg-white/5 border ${errors.email ? "border-rose-500/50" : "border-white/10"} rounded-2xl p-3.5 flex flex-col justify-between hover:border-white/20 transition-all min-h-[70px]`}>
           <span className="text-xs font-semibold text-muted/80 tracking-wider uppercase mb-1">
             Email
           </span>
           <input
             type="email"
-            className="w-full bg-transparent text-white font-bold text-base md:text-lg border-none p-0 focus:ring-0 focus:outline-none placeholder:text-white/20"
+            className="w-full bg-transparent text-white font-bold text-sm md:text-base border-none p-0 focus:ring-0 focus:outline-none placeholder:text-white/20"
             placeholder="Enter Your Email"
             {...register("email")}
           />
-          <Mail className="w-5 h-5 text-sky absolute top-4 right-4 opacity-70 pointer-events-none" />
+          <Mail className="w-5 h-5 text-sky absolute top-3.5 right-4 opacity-70 pointer-events-none" />
           {errors.email && (
-            <span className="text-rose-500 text-[10px] mt-1 block absolute bottom-1 left-4">{errors.email.message}</span>
+            <span className="text-rose-500 text-[10px] mt-1 block absolute bottom-0.5 left-4">{errors.email.message}</span>
           )}
         </div>
 
         {/* Contact Phone */}
-        <div className={`relative bg-white/5 border ${errors.phone ? "border-rose-500/50" : "border-white/10"} rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all min-h-[84px]`}>
+        <div className={`relative bg-white/5 border ${errors.phone ? "border-rose-500/50" : "border-white/10"} rounded-2xl p-3.5 flex flex-col justify-between hover:border-white/20 transition-all min-h-[70px]`}>
           <span className="text-xs font-semibold text-muted/80 tracking-wider uppercase mb-1">
             Contact
           </span>
           <input
             type="tel"
-            className="w-full bg-transparent text-white font-bold text-base md:text-lg border-none p-0 focus:ring-0 focus:outline-none placeholder:text-white/20"
+            className="w-full bg-transparent text-white font-bold text-sm md:text-base border-none p-0 focus:ring-0 focus:outline-none placeholder:text-white/20"
             placeholder="Enter Your Number"
             {...register("phone")}
           />
-          <Phone className="w-5 h-5 text-sky absolute top-4 right-4 opacity-70 pointer-events-none" />
+          <Phone className="w-5 h-5 text-sky absolute top-3.5 right-4 opacity-70 pointer-events-none" />
           {errors.phone && (
-            <span className="text-rose-500 text-[10px] mt-1 block absolute bottom-1 left-4">{errors.phone.message}</span>
+            <span className="text-rose-500 text-[10px] mt-1 block absolute bottom-0.5 left-4">{errors.phone.message}</span>
           )}
         </div>
       </div>
@@ -487,13 +487,14 @@ export const FlightEnquiryForm: React.FC = () => {
       {/* Row 4: Referral Source & Message */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Referral Source */}
-        <div className="relative bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col justify-between hover:border-white/20 transition-all min-h-[84px] md:col-span-1">
+        {/* Referral Source */}
+        <div className="relative bg-white/5 border border-white/10 rounded-2xl p-3.5 flex flex-col justify-between hover:border-white/20 transition-all min-h-[70px] md:col-span-1">
           <span className="text-xs font-semibold text-muted/80 tracking-wider uppercase mb-1">
             How did you hear about us?
           </span>
           <select
             id="source"
-            className="w-full bg-transparent text-white font-bold text-sm md:text-base border-none p-0 focus:ring-0 focus:outline-none [color-scheme:dark] cursor-pointer"
+            className="w-full bg-transparent text-white font-semibold text-sm md:text-base border-none p-0 focus:ring-0 focus:outline-none [color-scheme:dark] cursor-pointer"
             {...register("source")}
           >
             <option value="google" className="bg-deep-blue text-white">
@@ -509,7 +510,7 @@ export const FlightEnquiryForm: React.FC = () => {
               Other
             </option>
           </select>
-          <Compass className="w-5 h-5 text-sky absolute top-4 right-4 opacity-70 pointer-events-none" />
+          <Compass className="w-5 h-5 text-sky absolute top-3.5 right-4 opacity-70 pointer-events-none" />
         </div>
 
         {/* Special Requirements */}
